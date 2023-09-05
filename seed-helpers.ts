@@ -22,6 +22,7 @@ export const seedFixtures = async () => {
       age: 20,
     },
   });
+
   const rachel = await client.user.create({
     data: {
       username: "rachelIsTheBest",
