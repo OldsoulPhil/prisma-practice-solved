@@ -10,15 +10,14 @@ export const getAverageScoreForUser = async (userId: number) => {
       starRatings: true,
     },
   });
-
-  const starRatings = result.starRatings;
-
-  if (starRatings.length === 0) {
+  if (result && result.starRatings.length > 0) {
+    const totalScore = result.starRatings.reduce(
+      (sum, score) => sum + score.score,
+      0
+    );
+    const averageScore = totalScore / result.starRatings.length;
+    return averageScore;
+  } else {
     return 0;
   }
-
-  const totalScore = starRatings.reduce((sum, rating) => sum + rating.score, 0);
-  const averageScore = totalScore / starRatings.length;
-
-  return averageScore;
 };

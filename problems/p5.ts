@@ -17,13 +17,13 @@ export const getAllMoviesWithAverageScoreOverN = async (n: number) => {
     entries,
     (acc, [key, starRatings]) => {
       const averageScore =
-        sumBy(stars, (star) => star.score) / starRatings.length;
+        sumBy(starRatings, (star) => star.score) / starRatings.length;
       if (averageScore > n) {
-        return [...acc, starRatings[0].movieId];
+        return [...acc, starRatings[0].movie];
       }
       return acc;
     },
-    [] as number[]
+    [] as StarRating[]
   );
   return moviesWithAverageScoreOverN;
 };
