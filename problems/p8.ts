@@ -11,11 +11,11 @@ export const findTheGrumpiestCriticId = async () => {
       score: true,
     },
   });
-
-  const grumpiestCritic = minBy(minStarRating, (rating) => rating._avg.score);
-  const grumpiestCriticId = grumpiestCritic?.userId;
-
-  return grumpiestCriticId;
+  const criticWithLowestAvg = minBy(
+    minStarRating,
+    (rating) => rating._avg.score as number
+  );
+  return criticWithLowestAvg?.userId;
 };
 
 // find the critic with the highest average score
@@ -26,7 +26,10 @@ export const findTheNicestCriticId = async () => {
       score: true,
     },
   });
-  const nicestCritic = maxBy(maxStarRating, (rating) => rating._avg.score);
+  const nicestCritic = maxBy(
+    maxStarRating,
+    (rating) => rating._avg.score as number
+  );
   const nicestCriticId = nicestCritic?.userId;
 
   return nicestCriticId;
